@@ -1,0 +1,21 @@
+.Tables {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.Tables > table {
+  margin: 10px;
+  background-color: #eee;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+caption {
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  letter-spacing: 0.2rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
