@@ -4,17 +4,48 @@ class Table extends Component {
   constructor(props) {
     super(props);
     this.state = { rows: [] };
-    this.props.eos
-      .getTableRows({
-        code: this.props.code,
-        scope: this.props.scope,
-        table: this.props.name,
-        json: true
-      })
-      .then(table => {
-        this.setState({ rows: table.rows });
-      })
-      .catch(console.error);
+    this.update = this.update.bind(this);
+    this.update();
+  }
+
+  update() {
+    console.log(this.props.name);
+    const rows = new Array(this.props.scopes.length);
+    let pending = this.props.scopes.length;
+    for (let i = 0; i < this.props.scopes.length; i++) {
+      this.props.eos
+        .getTableRows({
+          code: this.props.code,
+          scope: this.props.scopes[i],
+          table: this.props.name,
+          json: true
+        })
+        .then(scope => {
+          rows[i] = scope.rows;
+          pending--;
+          if (pending === 0) {
+            const newRows = [].concat.apply([], rows);
+            this.setState({ rows: newRows });
+            if (this.props.onUpdate !== undefined) {
+              this.props.onUpdate(newRows);
+            }
+          }
+        })
+        .catch(err => {
+          pending--;
+          console.error(err);
+        });
+    }
+  }
+
+  componentDidUpdate(previousProps, previousState) {
+    if (
+      this.props.updateTime !== previousProps.updateTime ||
+      JSON.stringify(this.props.accounts) !==
+        JSON.stringify(previousProps.accounts)
+    ) {
+      setTimeout(this.update, 1000);
+    }
   }
 
   render() {

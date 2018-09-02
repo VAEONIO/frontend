@@ -3,36 +3,56 @@ import "./Tables.css";
 import Table from "./Table";
 
 class T {
-  constructor(code, scope, name) {
+  constructor(code, name) {
     this.code = code;
-    this.scope = scope;
     this.name = name;
   }
 }
-
+const profileTable = new T("vaeonxxvaeon", "profiles");
 const tables = [
-  new T("vaeonxxvaeon", "vaeonxxvaeon", "profiles"),
-  new T("vaeonxxvaeon", "vaeonxxvaeon", "fields"),
-  new T("vaeonxxvaeon", "vaeonxxvaeon", "requests"),
-  new T("vaeonxxvaeon", "vaeonxxvaeon", "reqin"),
-  new T("vaeonxxvaeon", "vaeonxxvaeon", "reqdone")
+  new T("vaeonxxvaeon", "fields"),
+  new T("vaeonxxvaeon", "requests"),
+  new T("vaeonxxvaeon", "reqin"),
+  new T("vaeonxxvaeon", "reqdone")
 ];
 
 class Tables extends Component {
+  constructor(props) {
+    super(props);
+    this.updateAccounts = this.updateAccounts.bind(this);
+    this.state = {
+      accounts: []
+    };
+  }
+
   render() {
     return (
       <div className="Tables">
+        <Table
+          key={0}
+          eos={this.props.eos}
+          code={profileTable.code}
+          scopes={["vaeonxxvaeon"]}
+          name={profileTable.name}
+          updateTime={this.props.updateTime}
+          onUpdate={this.updateAccounts}
+        />
         {tables.map((table, i) => (
           <Table
-            key={i}
+            key={i + 1}
             eos={this.props.eos}
             code={table.code}
-            scope={table.scope}
+            scopes={this.state.accounts}
             name={table.name}
+            updateTime={this.props.updateTime}
           />
         ))}
       </div>
     );
+  }
+
+  updateAccounts(rows) {
+    this.setState({ accounts: rows.map(row => row.account) });
   }
 }
 

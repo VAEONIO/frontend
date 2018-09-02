@@ -124,7 +124,9 @@ class Actions extends Component {
           `${this.props.account.name}@${this.props.account.authority}`
         ]
       });
-      contract[this.state.action.name](...args);
+      contract[this.state.action.name](...args)
+        .then(this.props.onExecution)
+        .catch(console.error);
     });
   }
 }

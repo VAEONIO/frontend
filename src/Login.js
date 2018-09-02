@@ -1,14 +1,6 @@
 import React, { Component } from "react";
 import "./Login.css";
 
-const network = {
-  blockchain: "eos",
-  host: "user-api.eoseoul.io",
-  port: 80,
-  protocol: "http",
-  chainId: "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906"
-};
-
 class Login extends Component {
   constructor(props) {
     super(props);

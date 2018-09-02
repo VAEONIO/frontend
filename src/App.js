@@ -11,8 +11,11 @@ import Error from "./Error";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      updateTime: Date.now()
+    };
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleActionExecution = this.handleActionExecution.bind(this);
     this.setAccountAndEos = this.setAccountAndEos.bind(this);
     connect(this.setAccountAndEos);
   }
@@ -21,9 +24,13 @@ class App extends Component {
     if (this.state.eos !== undefined) {
       return (
         <div className="App">
-          <Tables eos={this.state.eos} />
+          <Tables eos={this.state.eos} updateTime={this.state.updateTime} />
           <div className="row">
-            <Actions eos={this.state.eos} account={this.state.account} />
+            <Actions
+              eos={this.state.eos}
+              account={this.state.account}
+              onExecution={this.handleActionExecution}
+            />
           </div>
           <div className="row">
             <Command />
@@ -44,6 +51,10 @@ class App extends Component {
 
   handleLogin() {
     login(this.setAccountAndEos);
+  }
+
+  handleActionExecution() {
+    this.setState({ updateTime: Date.now() });
   }
 }
 
