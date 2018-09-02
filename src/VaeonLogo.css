@@ -1,0 +1,28 @@
+.VaeonLogo {
+  width: 450px;
+  padding: 40px;
+}
+
+#VaeonLogo-logo {
+  animation: ease-in-out hvr-bob-top 3.5s infinite;
+}
+
+@keyframes hvr-bob-top {
+  0% {
+    -webkit-transform: translateY(-6px);
+    transform: translateY(-6px);
+    fill: red;
+  }
+
+  50% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    fill: black;
+  }
+
+  100% {
+    -webkit-transform: translateY(-6px);
+    transform: translateY(-6px);
+    fill: red;
+  }
+}

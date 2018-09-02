@@ -4,6 +4,7 @@ import "./App.css";
 import Tables from "./Tables";
 import { connect, login } from "./connection";
 import Actions from "./Actions";
+import VaeonLogo from "./VaeonLogo";
 import Login from "./Login";
 import Command from "./Command";
 import Error from "./Error";
@@ -37,6 +38,9 @@ class App extends Component {
           </div>
           <div className="row">
             <Error />
+          </div>
+          <div className="App-footer row">
+            <VaeonLogo />
           </div>
         </div>
       );

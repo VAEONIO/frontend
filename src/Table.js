@@ -9,7 +9,6 @@ class Table extends Component {
   }
 
   update() {
-    console.log(this.props.name);
     const rows = new Array(this.props.scopes.length);
     let pending = this.props.scopes.length;
     for (let i = 0; i < this.props.scopes.length; i++) {
