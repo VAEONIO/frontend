@@ -26,7 +26,7 @@ class Table extends Component {
             const newRows = [].concat.apply([], rows);
             this.setState({ rows: newRows });
             if (this.props.onUpdate !== undefined) {
-              this.props.onUpdate(newRows);
+              this.props.onUpdate(newRows.map(row => row.account));
             }
           }
         })
@@ -40,8 +40,7 @@ class Table extends Component {
   componentDidUpdate(previousProps, previousState) {
     if (
       this.props.updateTime !== previousProps.updateTime ||
-      JSON.stringify(this.props.accounts) !==
-        JSON.stringify(previousProps.accounts)
+      JSON.stringify(this.props.scopes) !== JSON.stringify(previousProps.scopes)
     ) {
       setTimeout(this.update, 1000);
     }

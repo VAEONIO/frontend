@@ -51,8 +51,8 @@ class Tables extends Component {
     );
   }
 
-  updateAccounts(rows) {
-    this.setState({ accounts: rows.map(row => row.account) });
+  updateAccounts(accounts) {
+    this.setState({ accounts: accounts });
   }
 }
 

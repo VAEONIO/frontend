@@ -1,4 +1,6 @@
-import ScatterJS from "./dist/scatter.esm";
+//import ScatterJS from "./scatter/scatter.esm";
+import ScatterJS from "scatter-js/dist/scatter.esm";
+
 import Eos from "eosjs";
 
 const network = {
