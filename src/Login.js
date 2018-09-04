@@ -21,7 +21,11 @@ class Login extends Component {
           <pre>
             <code>
               It looks like you do not have Scatter installed. Get it{" "}
-              <a href="https://get-scatter.com/" target="_blank">
+              <a
+                href="https://get-scatter.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 here
               </a>.
             </code>

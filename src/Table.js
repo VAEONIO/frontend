@@ -11,6 +11,24 @@ class Table extends Component {
   update() {
     const rows = new Array(this.props.scopes.length);
     let pending = this.props.scopes.length;
+
+    function processTableRows(index, scope) {
+      rows[index] = scope.rows;
+      pending--;
+      if (pending === 0) {
+        const newRows = [].concat.apply([], rows);
+        this.setState({ rows: newRows });
+        if (this.props.onUpdate !== undefined) {
+          this.props.onUpdate(newRows.map(row => row.account));
+        }
+      }
+    }
+
+    function processError(error) {
+      pending--;
+      console.error(error);
+    }
+
     for (let i = 0; i < this.props.scopes.length; i++) {
       this.props.eos
         .getTableRows({
@@ -19,21 +37,8 @@ class Table extends Component {
           table: this.props.name,
           json: true
         })
-        .then(scope => {
-          rows[i] = scope.rows;
-          pending--;
-          if (pending === 0) {
-            const newRows = [].concat.apply([], rows);
-            this.setState({ rows: newRows });
-            if (this.props.onUpdate !== undefined) {
-              this.props.onUpdate(newRows.map(row => row.account));
-            }
-          }
-        })
-        .catch(err => {
-          pending--;
-          console.error(err);
-        });
+        .then(processTableRows.bind(this, i))
+        .catch(processError);
     }
   }
 
