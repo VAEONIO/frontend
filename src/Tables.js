@@ -11,9 +11,9 @@ class T {
 const profileTable = new T("vaeonxxvaeon", "profiles");
 const tables = [
   new T("vaeonxxvaeon", "fields"),
-  new T("vaeonxxvaeon", "requests"),
-  new T("vaeonxxvaeon", "reqin"),
-  new T("vaeonxxvaeon", "reqdone")
+  new T("vaeonxxvaeon", "requests")
+  //  new T("vaeonxxvaeon", "reqin"),
+  //  new T("vaeonxxvaeon", "reqdone")
 ];
 
 class Tables extends Component {
@@ -21,7 +21,7 @@ class Tables extends Component {
     super(props);
     this.updateAccounts = this.updateAccounts.bind(this);
     this.state = {
-      accounts: []
+      accounts: [this.props.account.name]
     };
   }
 
@@ -52,7 +52,7 @@ class Tables extends Component {
   }
 
   updateAccounts(accounts) {
-    this.setState({ accounts: accounts });
+    this.setState({ accounts: [this.props.account.name].concat(accounts) });
   }
 }
 

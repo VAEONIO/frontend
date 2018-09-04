@@ -52,6 +52,65 @@ class Actions extends Component {
         "removeprof",
         [new Arg("account_name", this.props.account.name)],
         "remove profile"
+      ),
+      new A(
+        "vaeonxxvaeon",
+        "createreq",
+        [
+          new Arg("requester", this.props.account.name),
+          new Arg("requestee", "vaeonxxvaeon"),
+          new Arg("payment", "100 VAE"),
+          new Arg("public_key", "KEY_SKDFASDJLAS"),
+          new Arg("field_names", ["University"]),
+          new Arg("memo", "We are interested in your professional profile.")
+        ],
+        "create request"
+      ),
+      new A(
+        "vaeonxxvaeon",
+        "acceptreq",
+        [
+          new Arg("requester", "vaeonxxvaeon"),
+          new Arg("requestee", this.props.account.name),
+          new Arg("field_keys", ["KEY_IUBMAHGTZQ", "KEY_ALJSLKLJAJ"]),
+          new Arg("memo", "Please have a look at my profile.")
+        ],
+        "accept request"
+      ),
+      new A(
+        "vaeonxxvaeon",
+        "rejectreq",
+        [
+          new Arg("requester", "vaeonxxvaeon"),
+          new Arg("requestee", this.props.account.name),
+          new Arg("memo", "Sorry I do not want to share this information.")
+        ],
+        "reject request"
+      ),
+      new A(
+        "vaeonxxvaeon",
+        "cancelreq",
+        [
+          new Arg("requester", this.props.account.name),
+          new Arg("requestee", "vaeonxxvaeon")
+        ],
+        "cancel request"
+      ),
+      new A(
+        "vaeonxxvaeon",
+        "releasereq",
+        [new Arg("requester", this.props.account.name), new Arg("key", 0)],
+        "release request"
+      ),
+      new A(
+        "vaeonxxvaeon",
+        "burnreq",
+        [
+          new Arg("requester", this.props.account.name),
+          new Arg("key", 0),
+          new Arg("memo", "This is a fake profile.")
+        ],
+        "burn request"
       )
     ];
     this.state = {

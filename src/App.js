@@ -24,16 +24,17 @@ class App extends Component {
     if (this.state.eos !== undefined) {
       return (
         <div className="App">
-          <Tables eos={this.state.eos} updateTime={this.state.updateTime} />
+          <Tables
+            eos={this.state.eos}
+            account={this.state.account}
+            updateTime={this.state.updateTime}
+          />
           <div className="row">
             <Actions
               eos={this.state.eos}
               account={this.state.account}
               onExecution={this.handleActionExecution}
             />
-          </div>
-          <div className="row">
-            <Command />
           </div>
           <div className="row">
             <Error />

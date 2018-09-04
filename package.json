@@ -2,7 +2,7 @@
   "name": "vaeon-frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://vaeonio.github.io/frontend",
+  "homepage": "https://prototype.vaeon.io",
   "dependencies": {
     "eosjs": "^16.0.6",
     "react": "^16.4.2",
