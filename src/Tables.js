@@ -52,7 +52,10 @@ class Tables extends Component {
   }
 
   updateAccounts(accounts) {
-    this.setState({ accounts: [this.props.account.name].concat(accounts) });
+    if (!accounts.includes(this.props.account.name)) {
+      accounts.push(this.props.account.name);
+    }
+    this.setState({ accounts: accounts });
   }
 }
 

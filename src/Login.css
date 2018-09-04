@@ -6,3 +6,28 @@
   align-items: center;
   flex-direction: column;
 }
+
+.Login-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+@media (min-width: 480px) {
+  .Login-buttons {
+    width: 450px;
+  }
+
+  .Login-buttons input {
+    width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Login-buttons {
+    width: 700px;
+  }
+
+  .Login-buttons input {
+    width: 300px;
+  }
+}

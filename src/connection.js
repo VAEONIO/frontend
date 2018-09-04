@@ -1,5 +1,5 @@
-//import ScatterJS from "./scatter/scatter.esm";
-import ScatterJS from "scatter-js/dist/scatter.esm";
+import ScatterJS from "./scatter/scatter.esm";
+//import ScatterJS from "scatter-js/dist/scatter.esm";
 
 import Eos from "eosjs";
 
@@ -14,21 +14,30 @@ const network = {
 let scatter;
 
 function connect(callback) {
-  ScatterJS.scatter.connect("vaeon.io").then(connected => {
-    if (!connected) return false;
-    scatter = ScatterJS.scatter;
-    getAccountAndEos(callback);
-  });
+  ScatterJS.scatter
+    .connect("vaeon.io")
+    .then(connected => {
+      if (!connected) {
+        return false;
+      }
+      scatter = ScatterJS.scatter;
+      getAccountAndEos(callback);
+    })
+    .catch();
 }
 
 function login(callback) {
   const requiredFields = { accounts: [network] };
-  scatter
-    .getIdentity(requiredFields)
-    .then(() => getAccountAndEos(callback))
-    .catch(error => {
-      console.error(error);
-    });
+  if (scatter) {
+    scatter
+      .getIdentity(requiredFields)
+      .then(() => getAccountAndEos(callback))
+      .catch(error => {
+        console.error(error);
+      });
+  } else {
+    callback(null, null, true);
+  }
 }
 
 function getAccountAndEos(callback) {

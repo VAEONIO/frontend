@@ -185,7 +185,7 @@ class Actions extends Component {
       });
       contract[this.state.action.name](...args)
         .then(this.props.onExecution)
-        .catch(console.error);
+        .catch(this.props.onExecutionError);
     });
   }
 }
