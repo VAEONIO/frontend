@@ -59,7 +59,7 @@ class Actions extends Component {
         [
           new Arg("requester", this.props.account.name),
           new Arg("requestee", "vaeonxxvaeon"),
-          new Arg("payment", "100 VAE"),
+          new Arg("payment", "100 VAEO"),
           new Arg("public_key", "KEY_SKDFASDJLAS"),
           new Arg("field_names", ["University"]),
           new Arg("memo", "We are interested in your professional profile.")
